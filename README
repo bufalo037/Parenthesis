@@ -1,0 +1,141 @@
+									TEMA 2 SD 
+								Costea Mihai 312CB
+
+===============================================================================
+
+===============================================================================
+
+
+Am definit 4 fisiere header din care 1 pt functiile stivei, 1 pt functiile
+coadei, 1 pt structurile auxiliare (list.h) si unul care le inglobeaza pe toate
+acestea sus mentionate (functii.h)
+
+stiva.h:
+
+eli un pointer la o functie de eliminare a spatiului alocat dintr-o celula
+
+Am lasat decat pointer la functie de eliminare pt ca decat eliminarea se
+raporteaza la toata structura cazuile de sortare, afisare le-am luat ca cazuri 
+particulare ale tipului de data folosit in exercitiu.
+Deoarece afisarea, sortarea nu se face pt toate elementele din cadrul structurii
+la difinirea unei noi structuri structura de tip stiva saucoada ar fi fost 
+invalida, avand mai putine sau mai multe campuri nefolosite 
+
+Similar si pt structura de coada din coada.h
+
+nrel din ambele structuri tine cont de nr de elemente ale stivei
+
+dime de dimensiunea unui element dintr-o celula a stivei
+
+vf un pointer la celula din varful stivei
+
+===============================================================================
+
+coada.h:
+
+Aceleasi campuri ca la stiva cu aceleasi scopuri mai putin pointerul vf care
+este inlocuit de pointerii ic si respectiv sc care reprezinta inceput respectiv
+sfarsitul cozii.
+
+===============================================================================
+
+list.h:
+
+Contine definirea unui tip de data ca pointer la o functie cu aceasi 
+signatura cu a pointerului la functia de eliminare din structurile sus
+mentionate.
+
+Si 2 structuri, una pt lista si alta pt a defini un tip de data pe care il va
+folosi lista ulterior
+
+===============================================================================
+
+
+Ideea este urmatoare, la parsare se citeste instructiunea iar dupa se citeste 
+in continuare cat este necesar in functie de instructiune dupa care se apeleaza
+fuctia care executa comanda citita. Acestea se afla in fisierele coada.c si
+stiva.c.
+
+Fisierul faux.c contine doar o functie de alocare spatiu pt o celula a unei 
+liste simplu inlantuite generica. Informatia din celula este copiata cu memcpy.
+NU i se atribuie celululei informatia data ca parametru direct prin setarea
+pointerului informatie catre aceasta. Aceasta urmand sa fie recitita ulterior in
+main.
+
+===============================================================================
+
+AlocareStive aloca spatiu pt un nrS de stive si ii seteaza campurile structurii
+cu infomatiile date ca parametrii sau cu valori defalut
+Analog pt AlocareCozi la cozi
+
+functia push pune in varful stivei o noua celula cu informatia care este data
+ca parametru si creste nr de elemente din stiva 
+Analog intrq pt cozi
+
+funtia pop sterge din varful stivei ultima celula si returneaza un pointer care
+pointeaza spre valoarea continuta de celula si scade nrelementelor. Daca stiva
+este vida returneaza NUll si nu face nimic.
+Analog extrq pt cozi cu exceptia ca sterge celula de la inceputul cozii
+
+rastoarna este o functie care rastoarna toate valorile din stiva s si le pune in
+stiva d
+
+prints afiseaza valorile din stiva de la baza la varf, face acest lucru mai 
+intai intorcand stiva iar dupa extragand elementele le afiseaza si totodata le
+pune in stiva originala. Acest proces este facut pt un nr de nrS stive 
+consecutive
+
+printq extrage elementele din coada, le pune intr-o coada auxiliara si dupa le
+afiseaza, coada originala dupa este pusa sa pointeze cu inceputul catre 
+inceputul cozii auziliare si analog acelas lucru si cu sfarsitul ei. Se face
+acest lucru pt a nu se mai dezaloca si aloca aiurea elemente, fiind o metoda 
+eficienta.
+
+sortq se foloseste de o stiva auxiliara in care se vor baga parantezele din
+coada dupa ce acestea vor fi extrase cu extrq.
+Daca vor fi introduse in ordine se introduce o noua paranteza in stiva, daca nu,
+se introduc elemente in coada, din stiva, pana cand se poate introduce elementul
+citit in stiva. La final se desearta stiva in coada.
+
+sorts se rezolva prin apelarea lui sortq, acest lucru se realizeaza cu o coada 
+auxiliara in care se pun elementele din stiva, la final dupa ce coada a fost
+sortata se desearta coada in stiva.
+
+ElimElemStive elibereaza fiecare celula si fiecare informatie din interiorul ei
+pt un numar de stive consecutive date ca parametru.
+ElimElemCozi este analog cu ElimElemStive dar acesta elibereaza cozi
+
+DistrugereStive se foloseste de functia de ElimElemStive sa goloasca celule stivei
+si informatia din acestea iar la final elibereaza structura de stiva
+Analog cu acesta este DistrugereElementeCozi care face acelas lucru numai ca pt
+cozi
+
+corrects foloseste o stiva, paranteze, in care pune toate parantezele care se
+inchid din stiva data ca parametru, dar cu ID-ul schimbat. ID-ul are rol de 
+indice pt o paranteza. Dupa cand este extrasa o paranteza care este deschisa 
+se compara cu ultimul element din stiva de paranteze, daca acestea se potrivesc
+se face 1 in vectorul nr pe pozitia in care se afla paranteza ultima extrasa din
+stiva data ca parametru si pe pozitia pe care se afla paranteza ultima extrasa 
+din vectorul de stive paranteze.
+La final se numara cea mai mare secventa de 1 din vector, acesta reprezentand
+maximul de elemente.
+Sunt constient ca puteam sa folosesc o stiva auxiliara in loc de un vector, dar
+am zis ca imi omor programul la cate alocari si dezalocari trebuia sa fac pt 
+aceasta (sa extraga elementele din nr pana gasea indicele corespunzator , sa
+tina elementele extrase intr-o alta coada auxiliara iar dupa ce am pus 1 pe
+pozitia respectiva sa desert stiva auxiliara in paranteze).
+La final se raastoarna stiva auxiliara in stiva stack pt a nu se pierde 
+elementele
+
+correctq desearta toata coada intr-o stiva auziliara care se da mai departe
+ca parametru functiei corrects. stiva se rastoarna iar dupa se desearta in 
+coada initiala.
+
+===============================================================================
+
+Nu mi s-a parut f eficienta abordarea stivelor si cozilor pt cerintele 
+particulare pe care am fost pusi sa le rezolvam, deoarece se aloca si dezaloca
+foarte multa memorie in acest proces. Memorie ce inca avea o semnificatie si
+trebuia doar sa fie prelucrata.
+
+===============================================================================

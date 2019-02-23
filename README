@@ -131,9 +131,3 @@ coada initiala.
 
 ===============================================================================
 
-Nu mi s-a parut f eficienta abordarea stivelor si cozilor pt cerintele 
-particulare pe care am fost pusi sa le rezolvam, deoarece se aloca si dezaloca
-foarte multa memorie in acest proces. Memorie ce inca avea o semnificatie si
-trebuia doar sa fie prelucrata.
-
-===============================================================================
